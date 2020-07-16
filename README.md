@@ -1,1 +1,1 @@
-# gridinsurance
+web: bin/go-getting-started
