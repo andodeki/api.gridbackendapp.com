@@ -88,9 +88,10 @@ func Init() {
 	dataSourceName := fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s %s",
 		dbhost, dbport, dbuser, dbdatabase, dbpass, dboptions,
 	)
-
+	//db_url := os.Getenv("DATABASE_URL")
 	var err error
 	conn, err := sqlx.Open("postgres", dataSourceName)
+	//conn, err := sqlx.Open("postgres", db_url)
 	resterrors.HandleErr(err)
 
 	conn.SetMaxOpenConns(32)

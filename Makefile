@@ -1,15 +1,7 @@
-GCC=go
-GCMD=run
-GPATH=main.go
-# GO_VERSION=1.14.1
+VERSION=$(shell git rev-parse --short HEAD)
 
-run:
-	# make build
-	$(GCC) $(GCMD) $(GPATH)
-build:
-	make build_db
+build-dev:
+	docker-compose build --build-arg APP_VERSION=$(VERSION)
 
-build_db:
-	rm pkg/db/db_struct.go
-	dgw postgres://postgres:password@localhost/testdb?sslmode=disable --schema=public --package=db --output=db_struct.go
-	mv db_struct.go pkg/db/
+up-dev:	
+	docker-compose up server
