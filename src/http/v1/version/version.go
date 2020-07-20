@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/andodeki/code/HA/api.gridbackendapp.com/src/config/config"
+	"github.com/andodeki/api.gridbackendapp.com/src/config/config"
 
 	"github.com/sirupsen/logrus"
 	// "github.com/gin-gonic/gin"

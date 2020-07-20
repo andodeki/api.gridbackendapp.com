@@ -5,8 +5,8 @@ import (
 	"errors"
 	"log"
 
-	"github.com/andodeki/code/HA/api.gridbackendapp.com/src/domain"
-	"github.com/andodeki/code/HA/api.gridbackendapp.com/src/repository/db"
+	"github.com/andodeki/api.gridbackendapp.com/src/domain"
+	"github.com/andodeki/api.gridbackendapp.com/src/repository/db"
 	"github.com/sirupsen/logrus"
 )
 

@@ -4,12 +4,12 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/andodeki/code/HA/api.gridbackendapp.com/src/helper/logger"
+	"github.com/andodeki/api.gridbackendapp.com/src/helper/logger"
 
-	"github.com/andodeki/code/HA/api.gridbackendapp.com/src/client/migrate"
-	"github.com/andodeki/code/HA/api.gridbackendapp.com/src/client/ping"
+	"github.com/andodeki/api.gridbackendapp.com/src/client/migrate"
+	"github.com/andodeki/api.gridbackendapp.com/src/client/ping"
 
-	resterrors "github.com/andodeki/code/HA/api.gridbackendapp.com/src/helper/utils/rest_errors"
+	resterrors "github.com/andodeki/api.gridbackendapp.com/src/helper/utils/rest_errors"
 
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/jmoiron/sqlx"

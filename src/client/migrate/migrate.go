@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 
-	"github.com/andodeki/code/HA/api.gridbackendapp.com/src/config/config"
+	"github.com/andodeki/api.gridbackendapp.com/src/config/config"
 
 	"github.com/golang-migrate/migrate/v4"
 

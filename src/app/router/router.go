@@ -1,8 +1,8 @@
 package router
 
 import (
-	"github.com/andodeki/code/HA/api.gridbackendapp.com/src/app/router/routes"
-	V1SubRoutes "github.com/andodeki/code/HA/api.gridbackendapp.com/src/http/v1"
+	"github.com/andodeki/api.gridbackendapp.com/src/app/router/routes"
+	V1SubRoutes "github.com/andodeki/api.gridbackendapp.com/src/http/v1"
 	"github.com/gorilla/mux"
 )
 

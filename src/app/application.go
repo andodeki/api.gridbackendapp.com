@@ -8,11 +8,11 @@ import (
 	"os/signal"
 	"time"
 
-	"github.com/andodeki/code/HA/api.gridbackendapp.com/src/app/router"
-	"github.com/andodeki/code/HA/api.gridbackendapp.com/src/client"
-	"github.com/andodeki/code/HA/api.gridbackendapp.com/src/helper/logger"
+	"github.com/andodeki/api.gridbackendapp.com/src/app/router"
+	"github.com/andodeki/api.gridbackendapp.com/src/client"
+	"github.com/andodeki/api.gridbackendapp.com/src/helper/logger"
 	"github.com/sirupsen/logrus"
-	// "github.com/andodeki/code/HA/api.griffins.com/src/app/router"
+	// "github.com/andodeki/api.griffins.com/src/app/router"
 )
 
 type Server struct {

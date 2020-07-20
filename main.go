@@ -4,8 +4,8 @@ import (
 	"flag"
 	"os"
 
-	"github.com/andodeki/code/HA/api.gridbackendapp.com/src/app"
-	"github.com/andodeki/code/HA/api.gridbackendapp.com/src/config/config"
+	"github.com/andodeki/api.gridbackendapp.com/src/app"
+	"github.com/andodeki/api.gridbackendapp.com/src/config/config"
 	"github.com/joho/godotenv"
 	"github.com/sirupsen/logrus"
 )

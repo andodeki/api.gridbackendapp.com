@@ -4,10 +4,10 @@ import (
 	"encoding/json"
 	"net/http"
 
-	users "github.com/andodeki/code/HA/api.gridbackendapp.com/src/domain"
-	resterrors "github.com/andodeki/code/HA/api.gridbackendapp.com/src/helper/utils/rest_errors"
-	"github.com/andodeki/code/HA/api.gridbackendapp.com/src/repository/db"
-	usersService "github.com/andodeki/code/HA/api.gridbackendapp.com/src/services/userservice"
+	users "github.com/andodeki/api.gridbackendapp.com/src/domain"
+	resterrors "github.com/andodeki/api.gridbackendapp.com/src/helper/utils/rest_errors"
+	"github.com/andodeki/api.gridbackendapp.com/src/repository/db"
+	usersService "github.com/andodeki/api.gridbackendapp.com/src/services/userservice"
 
 	"github.com/sirupsen/logrus"
 )

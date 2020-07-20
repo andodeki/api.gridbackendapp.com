@@ -4,13 +4,13 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/andodeki/code/HA/api.gridbackendapp.com/src/app/router/routes"
-	"github.com/andodeki/code/HA/api.gridbackendapp.com/src/http/v1/httpcars"
-	"github.com/andodeki/code/HA/api.gridbackendapp.com/src/http/v1/httpusers"
-	"github.com/andodeki/code/HA/api.gridbackendapp.com/src/http/v1/version"
-	"github.com/andodeki/code/HA/api.gridbackendapp.com/src/repository/db"
-	"github.com/andodeki/code/HA/api.gridbackendapp.com/src/services/carservice"
-	"github.com/andodeki/code/HA/api.gridbackendapp.com/src/services/userservice"
+	"github.com/andodeki/api.gridbackendapp.com/src/app/router/routes"
+	"github.com/andodeki/api.gridbackendapp.com/src/http/v1/httpcars"
+	"github.com/andodeki/api.gridbackendapp.com/src/http/v1/httpusers"
+	"github.com/andodeki/api.gridbackendapp.com/src/http/v1/version"
+	"github.com/andodeki/api.gridbackendapp.com/src/repository/db"
+	"github.com/andodeki/api.gridbackendapp.com/src/services/carservice"
+	"github.com/andodeki/api.gridbackendapp.com/src/services/userservice"
 )
 
 func Middleware(next http.Handler) http.Handler {
@@ -38,7 +38,7 @@ func GetRoutes() (SubRoute map[string]routes.SubRoutePackage) {
 				routes.Route{"Version", "GET", "/version", version.VersionHttp.VersionHandler},
 				routes.Route{"UserCreate", "POST", "/user", atHandlerUsers.Create},
 				routes.Route{"LoginUser", "POST", "/login", atHandlerUsers.Login},
-				
+
 				routes.Route{"CarCreate", "POST", "/car", atHandlerCars.CreateCar},
 				// routes.Route{"UsersIndex", "GET", "/users", UsersHandler.Index},
 				// routes.Route{"UsersStore", "POST", "/users", UsersHandler.Store},

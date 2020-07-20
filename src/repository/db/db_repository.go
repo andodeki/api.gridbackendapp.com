@@ -4,9 +4,9 @@ import (
 	"context"
 	"log"
 
-	"github.com/andodeki/code/HA/api.gridbackendapp.com/src/client"
+	"github.com/andodeki/api.gridbackendapp.com/src/client"
 
-	usersDomain "github.com/andodeki/code/HA/api.gridbackendapp.com/src/domain"
+	usersDomain "github.com/andodeki/api.gridbackendapp.com/src/domain"
 	"github.com/lib/pq"
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"

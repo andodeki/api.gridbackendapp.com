@@ -4,11 +4,11 @@ import (
 	"log"
 	"net/http"
 
-	ServerPing "github.com/andodeki/code/HA/api.gridbackendapp.com/src/http/v1/serverping"
+	ServerPing "github.com/andodeki/api.gridbackendapp.com/src/http/v1/serverping"
 
-	"github.com/andodeki/code/HA/api.gridbackendapp.com/src/app/router/routes"
-	// "github.com/andodeki/code/HA/api.griffins.com/src/app/router/routes"
-	// ServerPing "github.com/andodeki/code/HA/api.griffins.com/src/http/v1/serverping"
+	"github.com/andodeki/api.gridbackendapp.com/src/app/router/routes"
+	// "github.com/andodeki/api.griffins.com/src/app/router/routes"
+	// ServerPing "github.com/andodeki/api.griffins.com/src/http/v1/serverping"
 )
 
 func Middleware(next http.Handler) http.Handler {

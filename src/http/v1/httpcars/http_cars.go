@@ -5,10 +5,10 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/andodeki/code/HA/api.gridbackendapp.com/src/domain"
-	resterrors "github.com/andodeki/code/HA/api.gridbackendapp.com/src/helper/utils/rest_errors"
-	"github.com/andodeki/code/HA/api.gridbackendapp.com/src/repository/db"
-	carService "github.com/andodeki/code/HA/api.gridbackendapp.com/src/services/carservice"
+	"github.com/andodeki/api.gridbackendapp.com/src/domain"
+	resterrors "github.com/andodeki/api.gridbackendapp.com/src/helper/utils/rest_errors"
+	"github.com/andodeki/api.gridbackendapp.com/src/repository/db"
+	carService "github.com/andodeki/api.gridbackendapp.com/src/services/carservice"
 	"github.com/gorilla/mux"
 	"github.com/sirupsen/logrus"
 )

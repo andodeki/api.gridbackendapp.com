@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	resterrors "github.com/andodeki/code/HA/api.griffins.com/src/utils/rest_errors"
+	resterrors "github.com/andodeki/api.griffins.com/src/utils/rest_errors"
 )
 
 func RespondJson(w http.ResponseWriter, statusCode int, body interface{}) {
