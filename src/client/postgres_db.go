@@ -1,7 +1,6 @@
 package client
 
 import (
-	"flag"
 	"fmt"
 	"os"
 
@@ -30,6 +29,8 @@ var (
 	dbdatabase string
 )
 
+const DEV = false
+
 var (
 	Conn databaseInterface = &databaseStruct{}
 )
@@ -56,12 +57,28 @@ type databaseInterface interface {
 
 func Init() {
 
-	flag.StringVar(&dbhost, "dbhost", "localhost", "Set the port for the application")
-	flag.StringVar(&dbport, "dbport", "5432", "Set the port for the application")
-	flag.StringVar(&dbuser, "dbuser", "postgres", "Set the port for the application")
-	flag.StringVar(&dbpass, "dbpass", "password", "Set the port for the application")
-	flag.StringVar(&dboptions, "dboptions", "sslmode=disable", "Set the port for the application")
-	flag.StringVar(&dbdatabase, "dbdatabase", "testdb", "Set the port for the application")
+	//db_url := os.Getenv("DATABASE_URL")
+
+	if DEV {
+		conn, err := sqlx.Open("postgres", envInit(dbhost, dbport, dbuser, dbpass, dboptions, dbdatabase))
+		dbInstance(conn, err)
+	} else {
+		conn, err := sqlx.Open("postgres", os.Getenv("DATABASE_URL"))
+		dbInstance(conn, err)
+	}
+	// conn, err := sqlx.Open("postgres", dataSourceName)
+	//conn, err := sqlx.Open("postgres", db_url)
+
+}
+
+func envInit(dbhost string, dbport string, dbuser string, dbpass string, dboptions string, dbdatabase string) string {
+
+	// flag.StringVar(&dbhost, "dbhost", "localhost", "Set the port for the application")
+	// flag.StringVar(&dbport, "dbport", "5432", "Set the port for the application")
+	// flag.StringVar(&dbuser, "dbuser", "postgres", "Set the port for the application")
+	// flag.StringVar(&dbpass, "dbpass", "password", "Set the port for the application")
+	// flag.StringVar(&dboptions, "dboptions", "sslmode=disable", "Set the port for the application")
+	// flag.StringVar(&dbdatabase, "dbdatabase", "testdb", "Set the port for the application")
 
 	// flag.Parse()
 
@@ -88,9 +105,10 @@ func Init() {
 	dataSourceName := fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s %s",
 		dbhost, dbport, dbuser, dbdatabase, dbpass, dboptions,
 	)
+	return dataSourceName
+}
 
-	var err error
-	conn, err := sqlx.Open("postgres", dataSourceName)
+func dbInstance(conn *sqlx.DB, err error) {
 	resterrors.HandleErr(err)
 
 	conn.SetMaxOpenConns(32)
@@ -106,8 +124,6 @@ func Init() {
 		logger.Info("Migration Done Successfully")
 	}
 
-	// DbRepository{conn: Client}
-	// mysql.SetLogger(logger.GetLogger())
 	logger.Info("database successfully configured")
 
 	Conn.setConn(conn)
