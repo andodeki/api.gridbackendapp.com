@@ -24,9 +24,13 @@ func init() {
 		panic(err)
 	}
 
-	envPort := os.Getenv("PORT")
-	if len(envPort) > 0 {
-		port = envPort
+	// envPort := os.Getenv("PORT")
+	// if len(envPort) > 0 {
+	// 	port = envPort
+	// }
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "3000"
 	}
 }
 func main() {
