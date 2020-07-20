@@ -30,6 +30,8 @@ var (
 	dbdatabase string
 )
 
+const DEV = false
+
 var (
 	Conn databaseInterface = &databaseStruct{}
 )
@@ -89,9 +91,20 @@ func Init() {
 		dbhost, dbport, dbuser, dbdatabase, dbpass, dboptions,
 	)
 	//db_url := os.Getenv("DATABASE_URL")
-	var err error
-	conn, err := sqlx.Open("postgres", dataSourceName)
+
+	if DEV {
+		conn, err := sqlx.Open("postgres", dataSourceName)
+		dbInstance(conn, err)
+	} else {
+		conn, err := sqlx.Open("postgres", os.Getenv("DATABASE_URL"))
+		dbInstance(conn, err)
+	}
+	// conn, err := sqlx.Open("postgres", dataSourceName)
 	//conn, err := sqlx.Open("postgres", db_url)
+
+}
+
+func dbInstance(conn *sqlx.DB, err error) {
 	resterrors.HandleErr(err)
 
 	conn.SetMaxOpenConns(32)
@@ -107,8 +120,6 @@ func Init() {
 		logger.Info("Migration Done Successfully")
 	}
 
-	// DbRepository{conn: Client}
-	// mysql.SetLogger(logger.GetLogger())
 	logger.Info("database successfully configured")
 
 	Conn.setConn(conn)

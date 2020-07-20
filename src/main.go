@@ -13,7 +13,7 @@ import (
 var port string
 
 func init() {
-	flag.StringVar(&port, "port", "6000", "Assigning the port that the server should listen on.")
+	// flag.StringVar(&port, "port", "6000", "Assigning the port that the server should listen on.")
 
 	flag.Parse()
 
