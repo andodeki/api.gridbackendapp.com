@@ -1,17 +1,17 @@
 package app
 
 import (
-	"context"
 	"log"
 	"net/http"
 	"os"
 	"os/signal"
+	"sync"
+	"syscall"
 	"time"
 
 	"github.com/andodeki/api.gridbackendapp.com/src/app/router"
 	"github.com/andodeki/api.gridbackendapp.com/src/client"
 	"github.com/andodeki/api.gridbackendapp.com/src/helper/logger"
-	"github.com/sirupsen/logrus"
 	// "github.com/andodeki/api.griffins.com/src/app/router"
 )
 
@@ -49,19 +49,50 @@ func (s *Server) StartApplication() {
 		MaxHeaderBytes:    64e3,
 	}
 
-	// log.Fatal(newServer.ListenAndServe())
-	go func() {
+	wg := sync.WaitGroup{}
+	detectSignal := checkStopOSSignals(&wg)
+	for !(*detectSignal) {
 		if err := newServer.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 			log.Fatal(err)
 			os.Exit(-1)
 		}
-	}()
-	c := make(chan os.Signal, 1)
-	signal.Notify(c, os.Interrupt)
-	<-c
-	logrus.Debug("Bye")
-	logger.Info("Shutting down...")
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second*15)
-	defer cancel()
-	newServer.Shutdown(ctx)
+	}
+
+	logger.Info("Exit signal triggered, writing data... ")
+	// ctx, cancel := context.WithTimeout(context.Background(), time.Second*15)
+	// defer cancel()
+	// newServer.Shutdown(ctx)
+	wg.Wait()
+	logger.Info("Exiting program...")
+
+	// log.Fatal(newServer.ListenAndServe())
+
+	// go func() {
+	// 	if err := newServer.ListenAndServe(); err != nil && err != http.ErrServerClosed {
+	// 		log.Fatal(err)
+	// 		os.Exit(-1)
+	// 	}
+	// }()
+	// c := make(chan os.Signal, 1)
+	// signal.Notify(c, os.Interrupt)
+	// <-c
+	// logrus.Debug("Bye")
+	// logger.Info("Shutting down...")
+	// ctx, cancel := context.WithTimeout(context.Background(), time.Second*15)
+	// defer cancel()
+	// newServer.Shutdown(ctx)
+}
+
+func checkStopOSSignals(wg *sync.WaitGroup) *bool {
+	Signal := false
+	go func(s *bool) {
+		wg.Add(1)
+		ch := make(chan os.Signal)
+		signal.Notify(ch, syscall.SIGINT, syscall.SIGTERM)
+		<-ch
+		logger.Info("Exit signals received... ")
+		*s = true
+		wg.Done()
+	}(&Signal)
+	return &Signal
 }
